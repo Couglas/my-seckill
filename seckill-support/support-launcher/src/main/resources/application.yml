@@ -1,0 +1,33 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/seckill_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: Psw1317.,
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: support-provider
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.couglas.dao.entity
+
+
+dubbo:
+  application:
+    name: support-provider
+  protocol:
+    name: dubbo
+    port: 20880
+    host: 192.168.104.87
+  registry:
+    address: zookeeper://127.0.0.1:2181
+  provider:
+    scope: remote
+    delay: -1
+  scan:
+    base-packages: com.couglas.service.impl
+  metadata-report:
+    address: zookeeper://127.0.0.1:2181
